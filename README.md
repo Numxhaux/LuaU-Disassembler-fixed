@@ -12,7 +12,7 @@ local deserialize = import("deserialize")
 local disassemble = import("disassemble")
 local scriptPath = nil --> script path goes here <--
 
-local success, result = pcall(disassemble, deserialize(getscriptbytecode(scriptPath), getfenv(1)))
+local success, result = pcall(disassemble, deserialize(getscriptbytecode(scriptPath), getfenv(1)), 0, opCodes)
 assert(success, result)
 print(result)
 ```
