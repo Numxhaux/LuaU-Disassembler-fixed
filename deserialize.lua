@@ -39,6 +39,7 @@ local function Deserialize(bytecode)
     end
 
     local version = gBits8()
+    print(version)
     assert(version == 5, "bytecode version mismatch")
 
     local strings = {}
