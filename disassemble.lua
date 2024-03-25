@@ -12,7 +12,13 @@
 
 local format, typev, string, concat = string.format, type, tostring, table.concat
 
-local function Disassemble(chunk, id, opCodes) 
+local function Disassemble(chunk, id, opCodes)
+    local op = {}
+    for i,v in pairs(opCodes) do
+        op[v] = i
+    end
+
+  
     local id = id or 0
     local Instructions = chunk.code
     local Constants = chunk.const
@@ -25,7 +31,7 @@ local function Disassemble(chunk, id, opCodes)
     out = out .. format("\nInstructions[%d]\n", chunk.sizecode - 1)
 
     for i,v in pairs(Instructions) do
-        local Opcode = opCodes[v.Opcode + 1] or string(v.Opcode)
+        local Opcode = op[v.Opcode + 1] or string(v.Opcode)
         local Registers = v.Reg
         local Code = v.Code
         local B = Registers[2] + 1
