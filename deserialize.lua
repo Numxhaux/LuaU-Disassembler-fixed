@@ -8,7 +8,7 @@
  For inquiries regarding licensing, customization, or any other use of this code, please contact kkeyy at admin@kkeyy.lol.
 
 
---]]
+]]--
 
 local byte, bit, ldexp = string.byte, bit or require("bit"), math.ldexp
 local bor, blshift, brshift, band = bit.bor, bit.lshift, bit.rshift, bit.band
