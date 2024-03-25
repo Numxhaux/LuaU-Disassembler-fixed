@@ -1,9 +1,21 @@
+--[[ 
+                                             Copyright 2024 - kkeyy
+
+ All rights reserved. This Lua code is the intellectual property of kkeyy and is protected by copyright laws and international treaties. 
+ Unauthorized use, reproduction, or distribution of this code, in whole or in part, without the prior written consent of kkeyy, is strictly prohibited.
+ This code is provided "as is" without any warranty, express or implied, including but not limited to the implied warranties of merchantability and fitness for a particular purpose. 
+ kkeyy shall not be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this code, even if advised of the possibility of such damage.
+ For inquiries regarding licensing, customization, or any other use of this code, please contact kkeyy at admin@kkeyy.lol.
+
+
+--]]
+
 local byte, bit, ldexp = string.byte, bit or require("bit"), math.ldexp
 local bor, blshift, brshift, band = bit.bor, bit.lshift, bit.rshift, bit.band
 
 local function gBit(Bit, Start, End)
   	if End then
-    		local Res	= (Bit / 2 ^ (Start - 1)) % 2 ^ ((End - 1) - (Start - 1) + 1);
+    		local Res	= (Bit / 2 ^ (Start - 1)) % 2 ^ ((End - 1) - (Start - 1) + 1)
     
     		return Res - Res % 1
   	else
@@ -24,7 +36,7 @@ local function Deserialize(bytecode, env)
     
     local function gBits8() 
         local b = byte(bytecode, offset, offset)
-        offset = offset + 1;
+        offset = offset + 1
         return b
     end
 
@@ -163,7 +175,7 @@ local function Deserialize(bytecode, env)
         local sizep, p = readVarInt(), {}
         for b = 1, sizep do
             local id = readVarInt()
-            p[b] = protos[id + 1];
+            p[b] = protos[id + 1]
         end
         Proto.p = p
 
@@ -180,12 +192,12 @@ local function Deserialize(bytecode, env)
             for b = 1, Proto.sizecode do
                 lastoffset = lastoffset + gBits8()
                 lineinfo[b] = lastoffset
-            end;
+            end
 
             for b = 1, Intervals do
                 lastline = lastline + gBits32()
                 abslineinfo[b] = lastline
-            end;
+            end
 
             Proto.lineinfo = lineinfo
             Proto.abslineinfo = abslineinfo
