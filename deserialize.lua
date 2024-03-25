@@ -109,7 +109,7 @@ local function Deserialize(bytecode, env)
 
     local version = gBits8()
     print("version ->", version)
-    --assert(version == 0 or version == 1, "bytecode version mismatch")
+    assert(version == 0 or version == 1, "bytecode version mismatch")
 
     local stringCount = readVarInt()
     for i = 1, stringCount do
