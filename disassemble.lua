@@ -22,7 +22,7 @@ local function Disassemble(chunk, id, opCodes)
     local id = id or 0
     local Instructions = chunk.code
     local Constants = chunk.const
-    local out = format("Proto[%d]\n> #Stack: %d\n> #Params: %d\n> #Name: \"%s\"\n\nConstants[%d]\n", id, chunk.maxstacksize, chunk.numparams, chunk.name or "undefined", chunk.sizek - 1)
+    local out = format("Proto[%d]\n> #Stack: %d\n> #Params: %d\n> #Name: \"%s\"\n\nConstants[%d]\n", id, chunk.maxstacksize, chunk.numparams, chunk.name or "undefined", chunk.sizek)
 
     for i,v in pairs(Constants) do
         out = out .. format("> [%d] (%s) \"%s\"\n", i - 1, typev(v), string(v))
